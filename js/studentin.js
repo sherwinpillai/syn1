@@ -3,8 +3,9 @@ firebase.auth().onAuthStateChanged(function(user) {
       // User is signed in.
   
       
+      var user = firebase.auth().currentUser;
+      var email_id = user.email;
       
-      var email_id = firebase.auth().currentUser.displayName;
      
       
     
@@ -19,7 +20,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       // No user is signed in.
   
      
-      window.location.href = 'studentlogin.html';
+     window.location.href = "index.html";
   
     }
   });

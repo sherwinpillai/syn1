@@ -4,28 +4,41 @@ var year = document.getElementById('year');
 
 var search = document.getElementById("search");
 
+
 search.addEventListener('click', letsgo);
-
 function letsgo() {
-    console.log("letgo");
-    document.getElementById("tbid").innerHTML='none';
-    firebase.firestore().collection("project").where('dept', '==', dept.value).where('score', '==', score.value).where('acadyear', '==', year.value).get().then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-          console.log(doc.id);
-          renderproject(doc);
-          
-        })
-      });
-}
 
+  document.getElementById("tbid").innerHTML = "";
 
-firebase.firestore().collection("project").get().then((snapshot) => {
+  
+  firebase.firestore().collection("project").where('dept', '==', dept.value).where('acadyear','==',year.value).get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
       console.log(doc.id);
       renderproject(doc);
       
     })
   });
+
+
+
+  
+
+}
+
+
+// function letsgo() {
+//     console.log("letgo");
+//     document.getElementById("tbid").innerHTML='none';
+//     firebase.firestore().collection("project").where('dept', '==', dept.value).where('score', '==', score.value).where('acadyear', '==', year.value).get().then((snapshot) => {
+//         snapshot.docs.forEach(doc => {
+//           console.log(doc.id);
+//           renderproject(doc);
+          
+//         })
+//       });
+// }
+
+
 
   var table = document.getElementById("tbid");
 

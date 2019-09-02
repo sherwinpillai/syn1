@@ -10,7 +10,7 @@ $(document).ready(function(){
       });
     });
   });
-
+var provider = new firebase.auth.GoogleAuthProvider();
 var web = document.getElementById("web");
 web.addEventListener('click',webdomain);
 
@@ -22,6 +22,28 @@ dsa.addEventListener('click',dsadomain);
 
 var iot = document.getElementById("iot");
 iot.addEventListener('click',iotdomain);
+var signo = document.getElementById("signooo");
+ 
+signo.addEventListener('click',signin);
+function signin() {
+  console.log("sign");
+    firebase.auth().signInWithPopup(provider).then(function(result){
+      console.log("hgfh");
+      var token = result.credential.accessToken;
+      var user = result.user;
+      
+      console.log(token)
+      console.log(user)
+      window.location.href = "studentin.html";
+    }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+		
+      console.log(error.code)
+      console.log(error.message)
+   });
+    
+}
 
 function webdomain() {
   console.log("webbb");
@@ -92,8 +114,9 @@ function renderTitle(doc){
             id: 'domain',
             html: doc.data().domain,
           }).appendTo(detail);
-          $('#detail').append("<br/>" + "DOMAIN:::::");
+          
           $('#detail').append("<br/>" + doc.data().domain);
+          $('#detail').append("<br/>" + doc.data().name);
           $('#detail').append("<br/>" + doc.data().guide);
           $('#detail').append("<br/>" + doc.data().dept);
           $('#detail').append("    " + doc.data().class);
